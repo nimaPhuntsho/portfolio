@@ -74,10 +74,12 @@ export default async function Project() {
   ];
   return (
     <>
-      <div className={`flex flex-col justify-center  min-h-[100dvh] mt-10`}>
+      <div
+        className={`flex flex-col justify-center items-start lg:items-center  overflow-auto min-h-[100dvh] mt-10`}
+      >
         <div className={`flex flex-col gap-4`}>
           <h1 className={`text-4xl font-bold`}>PROJECTS</h1>
-          <div className={`flex  overflow-auto gap-4`}>
+          <div className={`flex overflow-auto gap-4`}>
             {projects.map((item, index) => (
               <div
                 key={index}

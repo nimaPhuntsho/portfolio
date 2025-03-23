@@ -56,6 +56,7 @@ export default async function About() {
         { name: "Firebase", icon: <SiFirebase /> },
       ],
     },
+
     {
       category: "Database Management",
       skills: [
@@ -80,9 +81,9 @@ export default async function About() {
   return (
     <>
       <div
-        className={`flex flex-col gap-10 mt-10 justify-center  min-h-[100dvh]`}
+        className={`flex flex-col gap-10 mt-10 justify-center lg:items-center min-h-[100dvh]`}
       >
-        <div className={`flex flex-col gap-10`}>
+        <div className={`flex flex-col gap-10 max-w-[1000px]`}>
           <div className={`flex flex-col gap-2`}>
             <h1 className={`text-4xl font-bold`}>ABOUT</h1>
             <div className={`flex flex-col justify-between  flex-wrap gap-6`}>
@@ -108,17 +109,19 @@ export default async function About() {
               {skills.map((skill, index) => (
                 <div
                   key={index}
-                  className={`border-1 min-w-[20rem]  p-5 rounded-xl border-[#6D5D6E]`}
+                  className={` flex flex-col gap-2 border-1 min-w-[20rem]  p-5 rounded-xl border-[#6D5D6E]`}
                 >
                   <h2 className={`text font-bold `}> {skill.category} </h2>
-                  {skill.skills.map((item, index) => (
-                    <li
-                      className={`list-none flex items-center gap-3`}
-                      key={index}
-                    >
-                      {item.icon} {item.name}
-                    </li>
-                  ))}
+                  <div>
+                    {skill.skills.map((item, index) => (
+                      <li
+                        className={`list-none flex items-center gap-3`}
+                        key={index}
+                      >
+                        {item.icon} {item.name}
+                      </li>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
