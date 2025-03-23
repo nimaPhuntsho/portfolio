@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import {
   FaReact,
   FaNodeJs,
@@ -22,6 +23,11 @@ import {
   SiConfluence,
   SiExpress,
 } from "react-icons/si";
+
+export const metadata: Metadata = {
+  title: "About 🤙🏾",
+  description: "About Nima",
+};
 
 export default async function About() {
   const skills = [

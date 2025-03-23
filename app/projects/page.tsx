@@ -1,5 +1,11 @@
+import { Metadata } from "next";
 import { FaAngular, FaCss3, FaExternalLinkAlt } from "react-icons/fa";
 import { SiFirebase, SiMongodb, SiNextdotjs } from "react-icons/si";
+
+export const metadata: Metadata = {
+  title: "Projects 👨🏽‍💻",
+  description: "Portfolio designed and developed by Nima",
+};
 
 export default async function Project() {
   const projects = [
