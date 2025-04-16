@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import ContactForm from "../components/ContactForm";
+import Footer from "../components/Footer";
 export const metadata: Metadata = {
   title: "Contact 📞",
   description: "Portfolio designed and developed by Nima",

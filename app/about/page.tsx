@@ -118,10 +118,10 @@ export default async function About() {
                   className={` flex flex-col gap-2 border-1 min-w-[20rem]  p-5 rounded-xl border-[#6D5D6E]`}
                 >
                   <h2 className={`text font-bold `}> {skill.category} </h2>
-                  <div>
+                  <div className={`flex flex-col gap-2`}>
                     {skill.skills.map((item, index) => (
                       <li
-                        className={`list-none flex items-center gap-3`}
+                        className={`list-none flex items-center gap-4`}
                         key={index}
                       >
                         {item.icon} {item.name}
