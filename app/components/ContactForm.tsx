@@ -30,11 +30,9 @@ const ContactForm = () => {
   };
   return (
     <>
-      <div
-        className={`flex flex-col justify-center items-center min-h-[100dvh]`}
-      >
+      <div className={`flex-1 flex flex-col justify-center items-center`}>
         <div className={`flex flex-col gap-4 w-full max-w-[500px] `}>
-          <h1 className={`text-4xl font-bold`}>CONTACT</h1>
+          <h1 className={`text-4xl`}>Contact</h1>
           <form
             className={`flex flex-col gap-6`}
             onSubmit={handleSubmit(onSubmit)}

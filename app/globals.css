@@ -17,3 +17,9 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #e64a19; /* Hover state */
 }
+
+li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}

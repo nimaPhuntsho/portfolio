@@ -1,58 +1,57 @@
 import React from "react";
 import styles from "@/app/custom-styles/Landing.module.css";
 import Link from "next/link";
-import { useDisclosure } from "../hooks/useDisclosure";
 import { FiX } from "react-icons/fi";
+import { useDisclosure } from "../context/DisclosureContext";
 
 const ResponsiveNav = () => {
-  const { isOpen, onToggle, opening } = useDisclosure();
+  const navlinks = [
+    {
+      href: "projects",
+      title: "Projects",
+    },
+    {
+      href: "about",
+      title: "About",
+    },
+    {
+      href: "blogs",
+      title: "Blogs",
+    },
+    {
+      href: "contact",
+      title: "Contacts",
+    },
+  ];
+  const { toggle, isOpen, close, isClosing } = useDisclosure();
   return (
     <>
       {isOpen && (
         <div
-          className={`p-5 flex flex-col justify-center gap-4 h-[100vh] w-[100%] bg-[#0F0F0F] fixed  top-0 left-0 z-20  ${
-            opening ? styles["navbar-out"] : styles["navbar-in"]
-          }`}
+          className={`p-5 flex flex-col gap-4 h-[100vh] w-[100%] bg-[#0F0F0F] fixed top-0 left-0 z-20  `}
         >
-          <div className={`absolute top-4 right-4  cursor-pointer`}>
-            <FiX onClick={onToggle} size="30px" />
+          <div
+            onClick={toggle}
+            className={`flex justify-end p-2  cursor-pointer `}
+          >
+            <FiX className="active:border" size="30px" />
           </div>
-          <Link onClick={onToggle} href="projects">
-            <div
-              className={`flex justify-start ${
-                opening ? styles["reveal-navlinks"] : styles["hide-navlinks"]
-              } opacity-0 `}
-              style={{
-                animationDelay: ".6s",
-              }}
-            >
-              <h1 className={`text-5xl`}>My work</h1>
-            </div>
-          </Link>
-          <Link onClick={onToggle} href="/about">
-            <div
-              className={`flex justify-start ${
-                opening ? styles["reveal-navlinks"] : styles["hide-navlinks"]
-              } opacity-0 text-5xl`}
-              style={{
-                animationDelay: ".6s",
-              }}
-            >
-              <h1>About</h1>
-            </div>
-          </Link>
-          <Link onClick={onToggle} href="/contact">
-            <div
-              className={`flex justify-start ${
-                opening ? styles["reveal-navlinks"] : styles["hide-navlinks"]
-              } opacity-0  text-5xl `}
-              style={{
-                animationDelay: ".6s",
-              }}
-            >
-              <h1>Contact</h1>
-            </div>
-          </Link>
+          <div
+            className={`flex flex-col  justify-center h-full ${
+              isOpen &&
+              `${styles["navbar-out"]} ${isClosing && `${styles["navbar-in"]}`}`
+            }`}
+          >
+            {navlinks.map((link, index) => (
+              <Link key={index} onClick={close} href={`/${link.href}`}>
+                <div className={`flex justify-start`}>
+                  <h1 className={`text-5xl hover:text-7xl transition-all `}>
+                    {link.title}
+                  </h1>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       )}
     </>

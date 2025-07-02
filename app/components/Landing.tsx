@@ -5,10 +5,10 @@ const Landing = () => {
     return str.split("");
   }
   return (
-    <main className="h-[100dvh]  text-white flex flex-col  justify-center items-center">
-      <div className={`flex flex-col items-center `}>
+    <main className="flex flex-col justify-center flex-1">
+      <div className={`flex flex-col items-center`}>
         <div className={`list-none flex gap-1 z-10`}>
-          {stringArray("I'm Nima Phuntsho").map((item, index) => (
+          {stringArray("I'm Nima").map((item, index) => (
             <li
               className={` text-2xl md:text-4xl text-[#1A1A1D] font-extrabold ${styles["fade-out"]}`}
               key={index}
