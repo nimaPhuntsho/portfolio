@@ -1,8 +1,7 @@
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  apiKey:
-    "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",
+  apiKey: process.env.NEXT_OPENAI_API_KEY,
 });
 
 export async function chatgptClient({

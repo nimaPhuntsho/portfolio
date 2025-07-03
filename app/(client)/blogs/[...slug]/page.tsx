@@ -28,10 +28,7 @@ export default async function BlogId({ params }: Props) {
   }));
 
   return blogs.map((blog) => (
-    <div
-      key={blog.id}
-      className={`flex flex-col ustify-center items-start mt-10`}
-    >
+    <div key={blog.id} className={`flex flex-col mt-10`}>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col ">
           <h1 className="text-5xl  ">{blog.title}</h1>

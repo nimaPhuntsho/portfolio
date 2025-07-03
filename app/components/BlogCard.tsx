@@ -19,7 +19,7 @@ const BlogCard = ({ blogs }: Props) => {
         <div
           key={blog.slug}
           onClick={() => handleOnClick(blog.slug)}
-          className={`flex flex-col  justify-center items-start mt-10 cursor-pointer gap-2`}
+          className={`flex flex-col mt-10 cursor-pointer gap-2`}
         >
           <div className="flex flex-col gap-4">
             <div className="flex flex-col">
@@ -29,7 +29,7 @@ const BlogCard = ({ blogs }: Props) => {
                 <p> {new Date(blog.date).toDateString()} </p>
               </div>
             </div>
-            <div className="relative  w-full h-[400px] ">
+            <div className="w-full h-[400px] relative ">
               <Image
                 className="rounded-lg object-cover"
                 src="/images/home-bg.jpg"
@@ -39,7 +39,7 @@ const BlogCard = ({ blogs }: Props) => {
             </div>
           </div>
           <p className="text-lg">{blog.excerpt}</p>
-          <button className="border p-2 rounded-sm cursor-pointer border-[#84AE92]">
+          <button className=" self-start border p-2 rounded-sm cursor-pointer border-[#84AE92]">
             Read more
           </button>
         </div>
