@@ -31,7 +31,7 @@ export default async function BlogId({ params }: Props) {
     <div key={blog.id} className={`flex flex-col mt-10`}>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col ">
-          <h1 className="text-5xl  ">{blog.title}</h1>
+          <h1 className="md:text-4xl text-2xl">{blog.title}</h1>
           <div className="flex items-center gap-2 font-extralight ">
             <p> {blog.author} </p>
             <p> {new Date(blog.date).toDateString()} </p>
@@ -46,7 +46,9 @@ export default async function BlogId({ params }: Props) {
           />
         </div>
         {blog.content.map((data, index) => (
-          <p key={index}> {data} </p>
+          <p className="text-justify" key={index}>
+            {data}
+          </p>
         ))}
       </div>
     </div>

@@ -32,7 +32,7 @@ const ContactForm = () => {
     <>
       <div className={`flex-1 flex flex-col justify-center items-center`}>
         <div className={`flex flex-col gap-4 w-full max-w-[500px] `}>
-          <h1 className={`text-4xl`}>Contact</h1>
+          <h1 className={`md:text-4xl text-2xl`}>Contact</h1>
           <form
             className={`flex flex-col gap-6`}
             onSubmit={handleSubmit(onSubmit)}

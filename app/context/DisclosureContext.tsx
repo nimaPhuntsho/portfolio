@@ -20,7 +20,7 @@ export const DisclosureProvider = ({
   const toggle = () => {
     if (isOpen) {
       setIsClosing(true);
-      setTimeout(() => setIsOpen(false), 400);
+      setTimeout(() => setIsOpen(false), 500);
     } else {
       setIsOpen(true);
       setIsClosing(false);

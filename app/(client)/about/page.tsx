@@ -11,6 +11,7 @@ import {
   FaHtml5,
   FaJava,
   FaJsSquare,
+  FaPython,
 } from "react-icons/fa";
 import {
   SiTypescript,
@@ -40,6 +41,7 @@ export default async function About() {
         { name: "C#", icon: <TbBrandCSharp /> },
         { name: "JavaScript", icon: <FaJsSquare /> },
         { name: "Java", icon: <FaJava /> },
+        { name: "Python", icon: <FaPython /> },
         { name: "SQL", icon: <FaDatabase /> },
       ],
     },
@@ -92,7 +94,7 @@ export default async function About() {
       <div className="flex flex-col flex-1 justify-center">
         <div className={`w-full flex flex-col gap-10 mt-10`}>
           <div className={`flex flex-col gap-2`}>
-            <h1 className={`text-4xl`}>About</h1>
+            <h1 className={`md:text-4xl text-2xl`}>About</h1>
             <div className={`flex flex-col justify-between  flex-wrap gap-6`}>
               <div className={`flex-1`}>
                 <p className={`text-justify`}>
@@ -106,14 +108,14 @@ export default async function About() {
           </div>
 
           <div className={`flex flex-col   gap-4`}>
-            <h1 className={`text-4xl `}>Skills</h1>
+            <h1 className={`md:text-4xl text-2xl `}>Skills</h1>
             <div className={`flex overflow-auto gap-4`}>
               {skills.map((skill, index) => (
                 <div
                   key={index}
-                  className={` flex flex-col gap-2 border-1 min-w-[20rem]  p-5 rounded-xl border-[#6D5D6E]`}
+                  className={` flex flex-col gap-2 border-1 min-w-[20rem]  p-5 rounded-md border-[#6D5D6E]`}
                 >
-                  <h2 className={`text `}> {skill.category} </h2>
+                  <h2 className={``}> {skill.category} </h2>
                   <div className={`flex flex-col gap-2`}>
                     {skill.skills.map((item, index) => (
                       <li

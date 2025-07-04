@@ -23,7 +23,7 @@ const BlogCard = ({ blogs }: Props) => {
         >
           <div className="flex flex-col gap-4">
             <div className="flex flex-col">
-              <h1 className="text-5xl  "> {blog.title} </h1>
+              <h1 className="md:text-4xl text-2xl"> {blog.title} </h1>
               <div className="flex items-center gap-2 font-extralight ">
                 <p>Nima Phuntsho</p>
                 <p> {new Date(blog.date).toDateString()} </p>
@@ -38,8 +38,8 @@ const BlogCard = ({ blogs }: Props) => {
               />
             </div>
           </div>
-          <p className="text-lg">{blog.excerpt}</p>
-          <button className=" self-start border p-2 rounded-sm cursor-pointer border-[#84AE92]">
+          <p className="text-lg text-justify ">{blog.excerpt}</p>
+          <button className=" self-start border p-2 rounded-sm cursor-pointer border-[#84AE92] active:animate-pulse ">
             Read more
           </button>
         </div>

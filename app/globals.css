@@ -1,4 +1,11 @@
 @import "tailwindcss";
+
+:root {
+  --fade-in-text: fade-in-text 0.3s 0.5s;
+  --close-navbar: close-navbar 0.5s ease-in;
+  --open-navbar: open-navbar 0.5s;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
@@ -22,4 +29,47 @@ li {
   list-style-type: none;
   padding: 0;
   margin: 0;
+}
+
+@keyframes fade-in-text {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes close-navbar {
+  0% {
+    height: 100%;
+    opacity: 1;
+    background-color: black;
+    color: black;
+  }
+
+  100% {
+    height: 0;
+    opacity: 0;
+    background-color: black;
+    color: black;
+  }
+}
+
+@keyframes open-navbar {
+  0% {
+    background-color: black;
+    height: 0;
+    opacity: 0;
+    color: black;
+  }
+
+  100% {
+    background-color: black;
+    height: 100%;
+    opacity: 1;
+    color: black;
+  }
 }

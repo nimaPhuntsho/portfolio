@@ -101,7 +101,7 @@ export default async function Project() {
       <div className="flex flex-col flex-1  justify-center">
         <div className={`flex flex-col gap-4  mt-5`}>
           <div className="flex flex-col gap-2">
-            <h1 className="text-4xl">Experience</h1>
+            <h1 className="md:text-4xl text-2xl">Experience</h1>
             {experiences.map((experience, index) => (
               <div key={index} className="flex flex-col gap-2">
                 <div>
@@ -121,12 +121,12 @@ export default async function Project() {
             ))}
           </div>
           <div className={`flex flex-col gap-4`}>
-            <h1 className={`text-4xl `}>Projects</h1>
+            <h1 className={`md:text-4xl text-2xl`}>Projects</h1>
             <div className={`flex overflow-x-auto gap-4 `}>
               {projects.map((item, index) => (
                 <div
                   key={index}
-                  className={`flex flex-col justify-between gap-4 border-1 w-[20rem] min-w-[20rem] p-5 rounded-lg border-[#6D5D6E]`}
+                  className={`flex flex-col justify-between gap-4 border-1 w-[20rem] min-w-[20rem] p-5 rounded-md border-[#6D5D6E]`}
                 >
                   <div className={`flex flex-col gap-4`}>
                     <div>
