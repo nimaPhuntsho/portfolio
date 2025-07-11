@@ -12,7 +12,7 @@ export async function postBlog({
 }) {
   const response = await chatgptClient({
     system: `you are a tech genius and also an excellent in writter`,
-    user: `This is the title of the blog ${title}, and this is the content ${content}. using this blog, please generate the following data in JSON format and also using each \n to seperate paragraph from one another where necessary, make sure the excerpt is no less than 40 words {
+    user: `This is the title of the blog, ${title}, and this is the content, ${content}. using this blog, please generate the following data in JSON format and Escape newline characters as “\n” inside the JSON string, make sure the excerpt is no less than 40 words {
       id: string; 
       title: string; 
       content: string; 
