@@ -22,8 +22,6 @@ const BlogForm = () => {
       title: data.title,
       content: data.content,
     });
-
-    console.log(data);
   };
 
   return (
