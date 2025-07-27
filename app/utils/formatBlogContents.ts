@@ -7,10 +7,10 @@ export async function formatContents(raw: string) {
   });
 
   const contents = choices[0].message.content!;
-  console.log(contents);
+  console.log(JSON.parse(contents));
 
   const jsonMatch = raw.match(/```json([\s\S]*?)```/)!;
-  console.log(jsonMatch);
+  // console.log(jsonMatch);
 
   const jsonContents: string[] = JSON.parse(jsonMatch[1]);
   return jsonContents;

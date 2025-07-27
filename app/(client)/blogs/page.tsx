@@ -1,5 +1,5 @@
+import BlogCard from "@/app/components/BlogCard";
 import { createClient } from "@/app/utils/server";
-import BlogCard from "../../components/BlogCard";
 
 export default async function Blog() {
   const supabase = await createClient();
@@ -11,8 +11,6 @@ export default async function Blog() {
     ...blogData,
     content: blogData.content.split("<br>"),
   }));
-
-  console.log(blogs);
 
   return (
     <>

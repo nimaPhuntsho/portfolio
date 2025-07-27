@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 export type BlogPost = {
   id: string; // Unique identifier (UUID or slug)
   title: string; // Blog post title
@@ -8,3 +10,14 @@ export type BlogPost = {
   cover_image: string | null; // Optional image URL
   slug: string; // URL-friendly identifier (e.g., "my-first-blog")
 };
+
+export const BlogPostSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  content: z.string(),
+  excerpt: z.string(),
+  author: z.string(),
+  date: z.string(),
+  cover_image: z.string().nullable().optional(),
+  slug: z.string(),
+});

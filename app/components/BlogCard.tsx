@@ -1,9 +1,10 @@
 "use client";
 
 import React from "react";
-import { BlogPost } from "../(client)/blogs/schema";
+
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { BlogPost } from "../(client)/blogs/schema";
 
 interface Props {
   blogs: BlogPost[];
@@ -32,7 +33,7 @@ const BlogCard = ({ blogs }: Props) => {
             <div className="w-full h-[400px] relative ">
               <Image
                 className="rounded-lg object-cover"
-                src="/images/home-bg.jpg"
+                src={blog.cover_image!}
                 fill
                 alt="home"
               />

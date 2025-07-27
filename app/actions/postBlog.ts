@@ -1,49 +1,74 @@
 "use server";
+import { BlogPostSchema } from "../(client)/blogs/schema";
 import { chatgptClient } from "../lib/openai";
-import { polishBlogJsonString } from "../utils/polishJson";
+import { getPublicUrl } from "../utils/publicURL";
+import { sanitiseName } from "../utils/sanitiseImageName";
 import { createClient } from "../utils/server";
+import { uploadImage } from "../utils/uploadImg";
 
-export async function postBlog({
-  title,
-  content,
-}: {
-  title: string;
-  content: string;
-}) {
-  const response = await chatgptClient({
-    system: `you are a tech genius and also an excellent in writter`,
-    user: `This is the title of the blog, ${title}, and this is the content, ${content}. using this blog, please generate the following data in JSON format and Escape newline characters as “\n” inside the JSON string, make sure the excerpt is no less than 40 words {
-      id: string; 
-      title: string; 
-      content: string; 
-      excerpt?: string; 
-      author: string; 
-      date: string; 
-      cover_image?: string; 
-      slug: string; 
-    }`,
-  });
+export async function postBlog(formData: FormData) {
+  const file = formData.get("image") as File | null;
+  if (!file) return;
 
-  const { choices } = response;
-  if (!choices[0].message.content) return;
-  const parsedBlog = polishBlogJsonString(choices[0].message.content);
+  try {
+    const response = await chatgptClient({
+      system: `You are a highly skilled tech expert and an exceptional writer.`,
+      user: `Generate a JSON object based on the following blog data. Do not include any extra words, symbols, or characters before or after the object. Escape newline characters as "\\n" inside the JSON string. The excerpt must be at least 40 words long.
+  Blog title: ${formData.get("title")}
+  Blog content: ${formData.get("content")}
+  Return the data in the following structure:
+  {
+    id: string;
+    title: string;
+    content: string;
+    excerpt: string;
+    author: string;
+    date: string;
+    cover_image?: string;
+    slug: string;
+  }`,
+    });
+    const { choices } = response;
+    if (!choices[0].message.content) return;
+    const parsedContent = BlogPostSchema.safeParse(
+      JSON.parse(choices[0].message.content)
+    );
+    if (!parsedContent.success) return;
+    const supabase = await createClient();
+    const { data } = await supabase
+      .from("blogs")
+      .insert([
+        {
+          title: parsedContent.data.title,
+          content: parsedContent.data.content,
+          excerpt: parsedContent.data.excerpt,
+          slug: parsedContent.data.slug,
+          author: "Nima Phuntsho",
+        },
+      ])
+      .select()
+      .single();
+    console.log(data);
 
-  if (!parsedBlog) return;
+    if (!data) return;
 
-  const supabase = await createClient();
+    const fileName = sanitiseName({
+      name: file.name,
+      slug: parsedContent.data.slug,
+    });
 
-  const { data, error } = await supabase
-    .from("blogs")
-    .insert([
-      {
-        title: parsedBlog.title,
-        content: parsedBlog.content,
-        excerpt: parsedBlog.excerpt,
-        slug: parsedBlog.slug,
-        author: "Nima Phuntsho",
-      },
-    ])
-    .select();
-  console.log(error);
-  console.log(data);
+    const fileURL = await uploadImage({ fileName: fileName, file: file });
+    const url = await getPublicUrl(fileURL);
+
+    const { error: updateError } = await supabase
+      .from("blogs")
+      .update({
+        cover_image: url,
+      })
+      .eq("id", data.id);
+
+    console.log(updateError);
+  } catch (error) {
+    console.log(error);
+  }
 }

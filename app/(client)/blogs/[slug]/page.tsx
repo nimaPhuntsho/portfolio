@@ -1,56 +1,57 @@
 import Image from "next/image";
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { createClient } from "@/app/utils/server";
 
 interface Props {
   params: Promise<{
-    slug: string[];
+    slug: string;
   }>;
 }
 
 export default async function BlogId({ params }: Props) {
   const { slug } = await params;
-  if (slug.length >= 2) {
-    redirect("/blogs");
-  }
-
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("blogs")
     .select("*")
-    .eq("slug", slug[0]);
+    .eq("slug", slug)
+    .maybeSingle();
 
-  if (!data || error) return <p>Error fetching the data</p>;
+  // const result = supabase.storage.from("blog").getPublicUrl("test.png");
+  // console.log(result.data.publicUrl);
 
-  const blogs = data.map((blogData) => ({
-    ...blogData,
-    content: blogData.content.split("\n"),
-  }));
+  // console.log(data);
 
-  return blogs.map((blog) => (
-    <div key={blog.id} className={`flex flex-col mt-10`}>
+  if (error) throw error;
+  if (!data) notFound();
+  if (!data.cover_image) return;
+
+  console.log(data.cover_image);
+
+  return (
+    <div key={data.id} className={`flex flex-col mt-10`}>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col ">
-          <h1 className="md:text-4xl text-2xl">{blog.title}</h1>
+          <h1 className="md:text-4xl text-2xl">{data.title}</h1>
           <div className="flex items-center gap-2 font-extralight ">
-            <p> {blog.author} </p>
-            <p> {new Date(blog.date).toDateString()} </p>
+            <p> {data.author} </p>
+            <p> {new Date(data.date).toDateString()} </p>
           </div>
         </div>
         <div className="w-full h-[400px] relative">
           <Image
             className="rounded-lg"
-            src="/images/home-bg.jpg"
+            src={data.cover_image}
             fill
             alt="home"
           />
         </div>
-        {blog.content.map((data, index) => (
+        {data.content.split("\n").map((data, index) => (
           <p className="text-justify" key={index}>
             {data}
           </p>
         ))}
       </div>
     </div>
-  ));
+  );
 }
