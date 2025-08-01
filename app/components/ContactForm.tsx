@@ -53,8 +53,8 @@ const ContactForm = () => {
         })
         .select();
       if (error) throw error;
-      reset();
       setContactState((state) => ({ ...state, success: true }));
+      reset();
     } catch (error) {
       console.log(error);
       setContactState((state) => ({
