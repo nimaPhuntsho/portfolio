@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`min-h-screen bg-[#1A1A1D] text-[#E7F6F2] ${workSans.className} p-6 flex flex-col `}
+        className={`min-h-screen bg-[#1A1A1D] text-[#E7F6F2] ${workSans.className} flex flex-col `}
       >
         {children}
       </body>
